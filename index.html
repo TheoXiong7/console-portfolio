@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theo Xiong</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header id="console-header">
+        <span>By Theo Xiong</span>
+        <button id="settings-button" aria-haspopup="dialog" aria-expanded="false" aria-label="Open Settings">Settings</button>
+    </header>
+
+    <main id="console-output" role="log" aria-live="polite">
+        <!-- Console output will appear here -->
+    </main>
+
+    <div id="console-input-line">
+        <span>&gt; </span>
+        <input type="text" id="command-input" autofocus autocomplete="off" placeholder="Enter command..." aria-label="Command input">
+    </div>
+
+    <!-- Settings Modal -->
+    <div id="settings-modal" class="hidden" role="dialog" aria-modal="true" aria-labelledby="settings-title">
+        <div class="modal-content">
+            <h2 id="settings-title">Settings</h2>
+            <label for="font-size">Font Size:</label>
+            <input type="range" id="font-size" min="12" max="24" value="16" aria-valuemin="12" aria-valuemax="24" aria-valuenow="16">
+            <br>
+            <label for="color-scheme">Color Scheme:</label>
+            <select id="color-scheme" aria-label="Color Scheme Selection">
+                <option value="dark">Dark (Default)</option>
+                <option value="light">Light</option>
+            </select>
+            <br>
+            <button id="close-settings" aria-label="Close Settings">Close</button>
+        </div>
+    </div>
+
+    <!-- Projects Modal (for displaying images) -->
+    <div id="projects-modal" class="hidden" role="dialog" aria-modal="true" aria-labelledby="projects-title">
+        <div class="modal-content">
+            <h2 id="projects-title">My Projects</h2>
+            <div id="projects-images">
+                <!-- Project images and descriptions will be injected here -->
+            </div>
+            <button id="close-projects" aria-label="Close Projects">Close</button>
+        </div>
+    </div>
+
+    <!-- Fallback Content for No JavaScript -->
+    <noscript>
+        <div class="no-js-message">
+            <p>JavaScript is disabled in your browser. Please enable JavaScript to use the console-style portfolio.</p>
+        </div>
+    </noscript>
+
+    <script src="script.js"></script>
+</body>
+</html>

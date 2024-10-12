@@ -1,0 +1,397 @@
+/* ============================
+   1. CSS Variables
+   ============================ */
+   :root {
+    /* Dark Theme Colors */
+    --background-dark: #1e1e1e;
+    --text-dark: #ffffff;
+    --button-bg-dark: #333333;
+    --button-hover-bg-dark: #555555;
+    --modal-bg-dark: #2e2e2e;
+    --link-color-dark: #00ff00;
+
+    /* Light Theme Colors */
+    --background-light: #f5f5f5;
+    --text-light: #000000;
+    --button-bg-light: #cccccc;
+    --button-hover-bg-light: #555555;
+    --modal-bg-light: #ffffff;
+    --link-color-light: #007BFF;
+
+    /* Common Colors */
+    --overlay-bg: rgba(0, 0, 0, 0.8);
+    --shadow-color: rgba(0, 0, 0, 0.5);
+    --transition-speed: 0.3s;
+
+    /* Font Sizes */
+    --font-size-base: 1rem; /* 16px */
+    --font-size-small: 0.875rem; /* 14px */
+    --font-size-large: 1.125rem; /* 18px */
+}
+
+/* ============================
+   2. General Styles
+   ============================ */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: var(--font-size-base);
+    background-color: var(--background-dark);
+    color: var(--text-dark);
+    transition: background-color var(--transition-speed), color var(--transition-speed), font-size var(--transition-speed);
+}
+
+.hidden {
+    display: none;
+}
+
+body.light-mode {
+    background-color: var(--background-light);
+    color: var(--text-light);
+}
+
+body.light-mode #settings-button {
+    background-color: var(--button-bg-light);
+    color: var(--text-light);
+}
+
+body.light-mode .modal-content {
+    background: var(--modal-bg-light);
+    color: var(--text-light);
+}
+
+body.light-mode #settings-button:hover,
+body.light-mode .modal-content button:hover,
+#projects-modal button:hover {
+    background-color: var(--button-hover-bg-light);
+}
+
+body.light-mode #projects-images .project a {
+    color: var(--link-color-light);
+}
+
+/* ============================
+   3. Console Styles
+   ============================ */
+   #console-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    position: relative; /* Ensure positioning context for child elements if needed */
+}
+
+#console-header span {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+/* Updated Settings Button Styles */
+#settings-button {
+    background-color: var(--button-bg-dark);
+    color: var(--text-dark);
+    border: none;
+    padding: 0.3125rem 0.625rem; /* 5px 10px */
+    cursor: pointer;
+    border-radius: 3px;
+    transition: background-color var(--transition-speed);
+    position: fixed; /* Fix the position relative to the viewport */
+    top: 20px; /* Adjust as needed */
+    right: 20px; /* Adjust as needed */
+    z-index: 1100; /* Higher than modals which have z-index: 1000 */
+}
+
+#settings-button:hover,
+#settings-button:focus {
+    background-color: var(--button-hover-bg-dark);
+}
+
+body.light-mode #settings-button {
+    background-color: var(--button-bg-light);
+    color: var(--text-light);
+}
+
+body.light-mode #settings-button:hover,
+body.light-mode #settings-button:focus {
+    background-color: var(--button-hover-bg-light);
+}
+
+/* Adjust Console to Prevent Overlapping with Fixed Settings Button */
+#console {
+    padding: 60px 10px 10px 10px; /* Add top padding to accommodate fixed button */
+}
+
+#console-output {
+    flex: 1;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    padding-right: 5px;
+}
+
+#console-input-line {
+    display: flex;
+    align-items: center;
+}
+
+#console-input-line span {
+    margin-right: 5px;
+    color: var(--link-color-dark);
+}
+
+body.light-mode #console-input-line span {
+    color: var(--link-color-light);
+}
+
+#command-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: inherit;
+    font-family: inherit;
+    font-size: 1rem; /* 16px */
+    pointer-events: auto;
+    user-select: text;
+    transition: font-size var(--transition-speed);
+}
+
+/* ============================
+   4. Modal Styles
+   ============================ */
+
+/* Shared Modal Styles */
+.modal-content {
+    background: var(--modal-bg-dark);
+    padding: 1.25rem; /* 20px */
+    border-radius: 5px;
+    color: var(--text-dark);
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 0 10px var(--shadow-color);
+    transition: background-color var(--transition-speed), color var(--transition-speed), transform var(--transition-speed);
+}
+
+body.light-mode .modal-content {
+    background: var(--modal-bg-light);
+    color: var(--text-light);
+}
+
+.modal-content h2 {
+    margin-top: 0;
+}
+
+.modal-content label {
+    display: block;
+    margin: 0.625rem 0 0.3125rem; /* 10px 0 5px */
+}
+
+.modal-content input[type="range"],
+.modal-content select {
+    width: 100%;
+}
+
+.modal-content button {
+    margin-top: 0.9375rem; /* 15px */
+    padding: 0.3125rem 0.625rem; /* 5px 10px */
+    background-color: var(--button-bg-dark);
+    border: none;
+    color: var(--text-dark);
+    cursor: pointer;
+    border-radius: 3px;
+    transition: background-color var(--transition-speed);
+}
+
+body.light-mode .modal-content button {
+    background-color: var(--button-bg-light);
+    color: var(--text-light);
+}
+
+.modal-content button:hover,
+.modal-content button:focus {
+    background-color: var(--button-hover-bg-dark);
+}
+
+body.light-mode .modal-content button:hover,
+body.light-mode .modal-content button:focus {
+    background-color: var(--button-hover-bg-light);
+}
+
+/* Settings Modal */
+#settings-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right:0;
+    bottom:0;
+    background: var(--overlay-bg);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+#projects-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right:0;
+    bottom:0;
+    background: var(--overlay-bg);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+#projects-modal.hidden,
+#settings-modal.hidden {
+    display: none;
+}
+
+#projects-modal:not(.hidden),
+#settings-modal:not(.hidden) {
+    display: flex;
+}
+
+/* Projects Images */
+#projects-images {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    max-height: 80vh;
+    overflow-y: auto;
+    width: 100%;
+}
+
+#projects-images .project {
+    background: var(--modal-bg-dark);
+    padding: 0.625rem; /* 10px */
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+    box-shadow: 0 0 5px var(--shadow-color);
+    transition: transform var(--transition-speed), background-color var(--transition-speed);
+}
+
+body.light-mode #projects-images .project {
+    background: var(--modal-bg-light);
+}
+
+#projects-images .project:hover,
+#projects-images .project:focus-within {
+    transform: scale(1.05);
+}
+
+#projects-images .project img {
+    max-width: 100%;
+    border-radius: 3px;
+    height: 120px;
+    object-fit: cover;
+}
+
+#projects-images .project h3 {
+    margin: 0.625rem 0 0.3125rem; /* 10px 0 5px */
+    font-size: 1em;
+}
+
+#projects-images .project p {
+    margin: 0 0 0.625rem; /* 0 0 10px */
+    font-size: 0.9em;
+}
+
+#projects-images .project a {
+    color: var(--link-color-dark);
+    text-decoration: none;
+    font-size: 0.9em;
+}
+
+body.light-mode #projects-images .project a {
+    color: var(--link-color-light);
+}
+
+#projects-images .project a:hover,
+#projects-images .project a:focus {
+    text-decoration: underline;
+}
+
+#projects-modal button {
+    margin-top: 1.25rem; /* 20px */
+    padding: 0.3125rem 0.625rem; /* 5px 10px */
+    background-color: var(--button-bg-dark);
+    border: none;
+    color: var(--text-dark);
+    cursor: pointer;
+    border-radius: 3px;
+    transition: background-color var(--transition-speed);
+}
+
+body.light-mode #projects-modal button {
+    background-color: var(--button-bg-light);
+    color: var(--text-light);
+}
+
+#projects-modal button:hover,
+#projects-modal button:focus {
+    background-color: var(--button-hover-bg-dark);
+}
+
+body.light-mode #projects-modal button:hover,
+body.light-mode #projects-modal button:focus {
+    background-color: var(--button-hover-bg-light);
+}
+
+/* ============================
+   5. Responsive Design for Projects Modal
+   ============================ */
+@media (min-width: 600px) {
+    #projects-images .project {
+        width: calc(50% - 10px); /* Two projects per row */
+    }
+}
+
+@media (min-width: 900px) {
+    #projects-images .project {
+        width: calc(33.333% - 10px); /* Three projects per row */
+    }
+}
+
+/* ============================
+   6. Scrollbar Styling
+   ============================ */
+#console-output::-webkit-scrollbar {
+    width: 8px;
+}
+
+#console-output::-webkit-scrollbar-track {
+    background: var(--background-dark);
+}
+
+#console-output::-webkit-scrollbar-thumb {
+    background: #555;
+    border-radius: 4px;
+}
+
+body.light-mode #console-output::-webkit-scrollbar-track {
+    background: var(--background-light);
+}
+
+body.light-mode #console-output::-webkit-scrollbar-thumb {
+    background: #ccc;
+}
+
+/* ============================
+   7. Responsive Font Sizes
+   ============================ */
+@media (max-width: 600px) {
+    :root {
+        --font-size-base: 0.875rem; /* 14px */
+    }
+}
+
+@media (min-width: 1200px) {
+    :root {
+        --font-size-base: 1.125rem; /* 18px */
+    }
+}
